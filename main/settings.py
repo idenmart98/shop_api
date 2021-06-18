@@ -31,6 +31,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'shop.apps.ShopConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -80,7 +81,7 @@ DATABASES = {
         'USER': 'shop_api_user',
         'PASSWORD': 'shop_api_password',
         'HOST': '127.0.0.1',
-        'PORT': '5432',
+        'PORT': '5433',
     },
 }
 
