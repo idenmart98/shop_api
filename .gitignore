@@ -3,3 +3,6 @@
 *.pyc
 venv/
 .vscode/
+settings_local.py
+src/static
+src/media
