@@ -15,3 +15,4 @@ class CategoryListView(generics.ListAPIView):
     serializer_class = CategoryListSerializer
 
 
+
