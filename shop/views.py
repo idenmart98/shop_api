@@ -1,7 +1,7 @@
 from shop.models import Product, Category
 from django.shortcuts import render
 from .serializers import ProductListSerializer, CategoryListSerializer, ProductDetailSerializer, ProductCreateSerializator,CategoryDetailSerializer
-
+from rest_framework import generics
 
 
 class ProductListView(generics.ListAPIView):

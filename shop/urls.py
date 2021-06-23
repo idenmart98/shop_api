@@ -1,6 +1,6 @@
 from shop.serializers import ProductListSerializer
 from django.urls import path
-from .views import ProductListView, CategoryListView, ProductRetrevieUpdateDeleteView, ProductCreateView, CategoryRetrieveUpdateDeleteView
+from .views import ProductListView, CategoryListView, ProductRetrieveUpdateDeleteView, ProductCreateView, CategoryRetrieveUpdateDeleteView
 
 
 urlpatterns = [
