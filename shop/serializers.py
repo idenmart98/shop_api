@@ -6,3 +6,8 @@ class ProductListSerializer(serializers.ModelSerializer):
         model = Product
         exclude = ['created', 'is_active']
 
+class CategoryListSerialize(serializers.ModelSerializer):
+    class Meta:
+        model = Category
+
+
