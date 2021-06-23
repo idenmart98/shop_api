@@ -7,11 +7,6 @@ class ProductListSerializer(serializers.ModelSerializer):
         model = Product
         exclude = ['created', 'is_active']
 
-class ProductDetailSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Product
-        fields = '__all__'
-
 
 class ProductDetailSerializer(serializers.ModelSerializer):
     class Meta:
@@ -25,7 +20,6 @@ class CategoryListSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
-
 class CategoryDetailSerializer(serializers.ModelSerializer):
     class Meta:
         model = Category
@@ -36,4 +30,3 @@ class ProductCreateSerializator(serializers.ModelSerializer):
     class Meta:
         model = Product
         fields = '__all__'
-
