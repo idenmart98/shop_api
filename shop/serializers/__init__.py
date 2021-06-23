@@ -1,2 +1,2 @@
-from .Product import ProductListSerializer, ProductDetailSerializer, ProductCreateSerializator
-from .Category import CategoryListSerializer, CategoryDetailSerializer
+from .product import ProductListSerializer, ProductDetailSerializer, ProductCreateSerializator
+from .category import CategoryListSerializer, CategoryDetailSerializer

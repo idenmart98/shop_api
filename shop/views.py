@@ -1,10 +1,6 @@
 from shop.models import Product, Category
 from django.shortcuts import render
-<<<<<<< HEAD
-from .serializers import ProductListSerializer, CategoryListSerializer, ProductDetailSerializer, CategoryDetailSerializer
-=======
-from .serializers import ProductListSerializer, CategoryListSerializer, ProductDetailSerializer, ProductCreateSerializator
->>>>>>> 397507b4831a97bdfec98a0d9faf3a16ddbaf3e7
+from .serializers import ProductListSerializer, CategoryListSerializer, ProductDetailSerializer, CategoryDetailSerializer, ProductCreateSerializator
 from rest_framework import generics
 # Create your views here.
 
