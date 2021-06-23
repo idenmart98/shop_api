@@ -19,9 +19,16 @@ class CategoryListSerializer(serializers.ModelSerializer):
         model = Category
         fields = '__all__'
 
+<<<<<<< HEAD
 
 class CategoryDetailSerializer(serializers.ModelSerializer):
     class Meta:
         model = Category
         fields = '__all__'
 
+=======
+class ProductCreateSerializator(serializers.ModelSerializer):
+    class Meta:
+        model = Product
+        fields = '__all__'
+>>>>>>> 397507b4831a97bdfec98a0d9faf3a16ddbaf3e7
