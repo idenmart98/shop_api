@@ -28,4 +28,3 @@ class ProductCreateView(generics.ListCreateAPIView):
 class CategoryRetrieveUpdateDeleteView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Category.objects.all()
     serializer_class = CategoryDetailSerializer
-
