@@ -1,12 +1,14 @@
 from shop.models import Product, Category
 from django.shortcuts import render
-from .serializers import ProductListSerializer, CategoryListSerializer, ProductDetailSerializer, ProductCreateSerializator,CategoryDetailSerializer
+from .serializers import ProductListSerializer, CategoryListSerializer, ProductDetailSerializer, CategoryDetailSerializer, ProductCreateSerializator
 from rest_framework import generics
+# Create your views here.
 
 
 class ProductListView(generics.ListAPIView):
     queryset = Product.objects.all()
     serializer_class = ProductListSerializer
+
 
 class ProductRetrieveUpdateDeleteView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Product.objects.all()
@@ -22,7 +24,7 @@ class ProductCreateView(generics.ListCreateAPIView):
     serializer_class = ProductCreateSerializator
     # permission_classes = Product.seller
 
+
 class CategoryRetrieveUpdateDeleteView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Category.objects.all()
     serializer_class = CategoryDetailSerializer
-
