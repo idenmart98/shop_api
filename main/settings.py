@@ -28,6 +28,7 @@ DEBUG = True
 ALLOWED_HOSTS = []
 
 
+AUTH_USER_MODEL = 'authead.MainUser'
 # Application definition
 
 INSTALLED_APPS = [
@@ -134,6 +135,20 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
+
+
+EMAIL_FROM = 'andreymalinov17@gmail.com'
+EMAIL_BCC = 'Qualle'
+
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT =587
+EMAIL_HOST_USER = 'andreymalinov17@gmail.com'
+EMAIL_HOST_PASSWORD = '*q$Yx!!4mg'
+EMAIL_USE_TLS = True
+EMAIL_USE_SSL = False
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+
+SERVER_EMAIL = 'andreymalinov17@gmail.com'
 
 try:
     from main.settings_local import *
