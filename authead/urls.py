@@ -5,5 +5,6 @@ from . import views
 
 
 urlpatterns = [
-    path('email/' ,views.EmailRegistrationView.as_view())
+    path('email/' ,views.EmailRegistrationView.as_view()),
+    path('email_verify/<str:code>', views.confirm_email),
 ]

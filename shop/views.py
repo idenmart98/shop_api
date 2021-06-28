@@ -22,8 +22,6 @@ class CategoryListView(generics.ListAPIView):
 class ProductCreateView(generics.ListCreateAPIView):
     queryset = Product.objects.all()
     serializer_class = ProductCreateSerializator
-    # permission_classes = Product.seller
-
 
 class CategoryRetrieveUpdateDeleteView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Category.objects.all()

@@ -7,6 +7,7 @@ from django.db import models
 from django.utils.translation import ugettext_lazy as _
 from django.contrib.auth.models import BaseUserManager, AbstractUser, \
     PermissionsMixin
+from rest_framework.serializers import ModelSerializer
 
 
 # Create your models here.
@@ -49,6 +50,7 @@ class MainUser(AbstractUser):
     email = models.EmailField(blank=True, null=True, verbose_name='Почта')
     password = models.CharField(blank=True, null=True, max_length=500)
     created_at = models.DateTimeField(auto_now_add=True)
+    active = models.BooleanField(default=False)
 
     objects = MainUserManager()
     USERNAME_FIELD = 'username'
