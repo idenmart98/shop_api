@@ -16,12 +16,14 @@ def code_expired(code_id: int):
 
 
 @app.task()
-def code_confirm(code):
-    code = code[0]
-    code.confirmed = True
-    code.save()
-    code.user.active = True
-    code.user.save()
+def code_confirm(code_id):
+    code = ConfirmationCode.objects.filter(id=code_id)
+    if code:
+        code = code[0]
+        code.confirmed = True
+        code.save()
+        code.user.active = True
+        code.user.save()
 
 
 @app.task()

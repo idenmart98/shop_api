@@ -30,16 +30,16 @@ class EmailRegistrationView(generics.CreateAPIView):
         self.request.data._mutable = False
         obj = serializer.save()
         code = ConfirmationCode.objects.create(user=obj)
-        code_expired.apply_async((code.id, ), eta=now() + timedelta(seconds=15))
-        user_expired.apply_async((obj.id,), eta=now() + timedelta(seconds=15))
+        code_expired.apply_async((code.id, ), eta=now() + timedelta(seconds=60))
+        user_expired.apply_async((obj.id,), eta=now() + timedelta(seconds=60))
         send_verify_url.apply_async((f'http://127.0.0.1:8000/authe/email_verify/{code.code}', obj.email))
 
 @api_view(['GET'])
 def confirm_email(request, code):
     code = ConfirmationCode.objects.filter(code=code)
     if code:
-        code_confirm(code)
-        token = Token.objects.update_or_create(user_id=code.user.id)
+        code_confirm.apply_async((code[0].id,))
+        token = Token.objects.update_or_create(user_id=code[0].user.id)
         return Response({
             "success": True, 
             "data": {'token': str(token[0])}}, 
