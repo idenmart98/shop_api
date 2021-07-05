@@ -1,3 +1,6 @@
+from datetime import timedelta
+
+from django.utils.timezone import now
 from django.contrib.auth import get_user_model
 from django.contrib.auth.hashers import make_password
 
@@ -10,7 +13,7 @@ from rest_framework.authtoken.models import Token
 
 from .serializers import EmailRegistrationSerializer
 from .models import ConfirmationCode
-from .utils import send_verify_url
+from .tasks import send_verify_url, code_expired
 
 User = get_user_model()
 
@@ -25,7 +28,8 @@ class EmailRegistrationView(generics.CreateAPIView):
         self.request.data._mutable = False
         obj = serializer.save()
         code = ConfirmationCode.objects.create(user=obj)
-        send_verify_url(f'http://127.0.0.1:8000/authe/email_verify/{code.code}', obj.email)
+        code_expired.apply_async((code.id, ), eta=now() + timedelta(seconds=30))
+        send_verify_url.apply_async((f'http://127.0.0.1:8000/authe/email_verify/{code.code}', obj.email))
 
 @api_view(['GET'])
 def confirm_email(request, code):

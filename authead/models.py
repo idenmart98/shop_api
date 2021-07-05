@@ -77,6 +77,9 @@ class ConfirmationCode(models.Model):
             self.code = self.get_code()
         super(ConfirmationCode, self).save(*args, **kwargs)
 
+    def __str__(self):
+        return self.code
+
     def get_code(self):
         current_codes = list(ConfirmationCode.objects.values_list('code', flat=True))
         while True:

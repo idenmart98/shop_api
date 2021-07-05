@@ -32,6 +32,7 @@ AUTH_USER_MODEL = 'authead.MainUser'
 # Application definition
 
 INSTALLED_APPS = [
+    'rest_framework',
     'authead.apps.AutheadConfig',
     'shop.apps.ShopConfig',
     'django.contrib.admin',
@@ -41,7 +42,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework.authtoken',
-    'rest_framework',
+    'celery',
 ]
 
 MIDDLEWARE = [
@@ -150,6 +151,14 @@ EMAIL_USE_SSL = False
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 
 SERVER_EMAIL = 'andreymalinov17@gmail.com'
+
+
+BROKER_URL = 'redis://localhost:6379/3'
+CELERY_RESULT_BACKEND = 'redis://localhost:6379/3'
+CELERY_ACCEPT_CONTENT = ['application/json']
+CELERY_TASK_SERIALIZER = 'json'
+CELERY_RESULT_SERIALIZER = 'json'
+CELERY_TIMEZONE = 'Asia/Bishkek'
 
 try:
     from main.settings_local import *
