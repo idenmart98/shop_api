@@ -2,6 +2,7 @@
 .idea
 *.pyc
 .venv/
+venv/
 .vscode/
 settings_local.py
 src/static
