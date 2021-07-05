@@ -15,6 +15,7 @@ def code_expired(code_id: int):
 
 @app.task()
 def user_expired(user_id: int):
-    if MainUser.objects.active = False
-        MainUser.objects.get(id=User_id).delete()
+    user = MainUser.objects.get(id = user_id)
+    if user.active == False:
+        user.delete()
     

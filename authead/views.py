@@ -28,8 +28,8 @@ class EmailRegistrationView(generics.CreateAPIView):
         self.request.data._mutable = False
         obj = serializer.save()
         code = ConfirmationCode.objects.create(user=obj)
-        code_expired.apply_async((code.id, ), eta=now() + timedelta(seconds=30))
-        user_expired.apply_async((obj.id,), eta=now() + timedelta(seconds=60))
+        code_expired.apply_async((code.id, ), eta=now() + timedelta(seconds=15))
+        user_expired.apply_async((obj.id,), eta=now() + timedelta(seconds=15))
         send_verify_url.apply_async((f'http://127.0.0.1:8000/authe/email_verify/{code.code}', obj.email))
 
 @api_view(['GET'])
