@@ -13,7 +13,7 @@ from rest_framework.authtoken.models import Token
 
 from .serializers import EmailRegistrationSerializer
 from .models import ConfirmationCode
-from .tasks import send_verify_url, code_expired
+from .tasks import send_verify_url, code_expired, code_confirm
 
 User = get_user_model()
 
@@ -35,13 +35,8 @@ class EmailRegistrationView(generics.CreateAPIView):
 def confirm_email(request, code):
     code = ConfirmationCode.objects.filter(code=code)
     if code:
-        code = code[0]
-        code.confirmed = True
-        code.save()
-        user = code.user 
-        user.active = True
-        user.save()
-        token = Token.objects.update_or_create(user_id=user.id)
+        code_confirm(code)
+        token = Token.objects.update_or_create(user_id=code.user.id)
         return Response({
             "success": True, 
             "data": {'token': str(token[0])}}, 
