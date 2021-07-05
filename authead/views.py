@@ -13,7 +13,7 @@ from rest_framework.authtoken.models import Token
 
 from .serializers import EmailRegistrationSerializer
 from .models import ConfirmationCode
-from .tasks import send_verify_url, code_expired
+from .tasks import send_verify_url, code_expired, user_expired
 
 User = get_user_model()
 
@@ -29,6 +29,7 @@ class EmailRegistrationView(generics.CreateAPIView):
         obj = serializer.save()
         code = ConfirmationCode.objects.create(user=obj)
         code_expired.apply_async((code.id, ), eta=now() + timedelta(seconds=30))
+        user_expired.apply_async((obj.id,), eta=now() + timedelta(seconds=60))
         send_verify_url.apply_async((f'http://127.0.0.1:8000/authe/email_verify/{code.code}', obj.email))
 
 @api_view(['GET'])
@@ -51,3 +52,4 @@ def confirm_email(request, code):
         "data": {'code':'invalid'}}, 
         status.HTTP_400_BAD_REQUEST)
     
+
