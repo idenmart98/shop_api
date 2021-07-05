@@ -1,7 +1,7 @@
 .DS_Store
 .idea
 *.pyc
-venv/
+.venv/
 .vscode/
 settings_local.py
 src/static
